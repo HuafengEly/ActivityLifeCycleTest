@@ -17,6 +17,10 @@ public class MainLayoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG,"onCreate");
         setContentView(R.layout.main_layout);
+        if (savedInstanceState!=null){
+            String tempData = savedInstanceState.getString("data_key");
+            Log.d(TAG,tempData);
+        }
         Button startNormalActivity = (Button) findViewById(R.id.start_normal_actibity);
         Button startDialogActivity = (Button) findViewById(R.id.start_dialog_activity);
         startNormalActivity.setOnClickListener(new View.OnClickListener(){
@@ -33,6 +37,13 @@ public class MainLayoutActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String tempData = "Something you just typed";
+        outState.putString("data_key",tempData);
     }
 
     @Override
